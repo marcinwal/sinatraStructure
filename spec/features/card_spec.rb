@@ -31,5 +31,4 @@ feature 'card' do
     expect(deck.count_cards).to eq(52)
   end
 
-
 end
