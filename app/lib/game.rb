@@ -50,4 +50,21 @@ class Game
       reduce(0){|sum,el| sum + el} == @numberOfMaxPlayers
   end
 
+  def playDealer
+    while @dealer.shouldTakeCard  
+      @dealer.addCard(@deck.giveACard)
+    end
+  end
+
+  def findWinners
+    results = @players.map{|player| (player.lost?)? 0 : player.score}
+    maxScore = results.max
+    ix = []
+    for i in (0..results.length)
+      ix << i+1 if results[i] == maxScore
+    end  
+    return [0] if (!@dealer.lost? && @dealer.score >= maxScore)
+    return ix
+  end
+
 end

@@ -45,5 +45,24 @@ describe 'the game' do
     game.standPlayer(0)
     expect(game.areAllPlayersFinished).to be true
   end
-  
+
+  it 'dealer should play authomatically' do 
+    game.addPlayer(player)
+    game.gameInit
+    game.standPlayer(0)
+    game.playDealer
+    expect(game.dealer.score).to be > 16   
+  end
+
+  it 'should know who is the winner' do 
+    game.addPlayer(player)
+    game.gameInit
+    game.standPlayer(0)
+    game.playDealer    
+    winners = game.findWinners  
+    print winners 
+    print game.players[0].score
+    print game.dealer.score
+  end  
+
 end
