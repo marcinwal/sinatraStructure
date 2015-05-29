@@ -30,4 +30,20 @@ describe 'the game' do
     game.hitPlayer(0,0)
     expect(game.players[0].hands[0].cards.length).to eq 3
   end
+
+  it 'player can stand' do 
+    game.addPlayer(player)
+    game.gameInit
+    game.standPlayer(0)
+    expect(game.players[0].option).to eq 'stand0'
+  end
+
+  it 'player know when players are finished' do 
+    game.addPlayer(player)
+    game.gameInit
+    expect(game.areAllPlayersFinished).to be false
+    game.standPlayer(0)
+    expect(game.areAllPlayersFinished).to be true
+  end
+  
 end

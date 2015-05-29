@@ -37,4 +37,17 @@ class Game
     end  
   end
 
+  def splitPlayer(player)
+    @players[player].splitHand if @players[player].isSplittingAllowed
+  end
+
+  def standPlayer(player)
+    @players[player].stand
+  end
+
+  def areAllPlayersFinished
+    @players.map{|player|  (player.option == 'stand0' || player.option == 'stand1' || player.lost?)? 1 : 0 }.
+      reduce(0){|sum,el| sum + el} == @numberOfMaxPlayers
+  end
+
 end
